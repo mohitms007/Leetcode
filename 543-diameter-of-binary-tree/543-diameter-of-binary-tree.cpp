@@ -13,15 +13,28 @@ class Solution {
 public:
     int maxHeight = 0;
      int findHeight(TreeNode* root) {
-        if(root == NULL) {
-            return 0;
+        int depth = 0;
+        
+        if (root == NULL) return depth;
+        
+        queue<TreeNode*> q;
+        q.push(root);
+        
+        while (!q.empty()) {
+            int size = q.size();
+            depth++;
+            for (int i = 0; i < size; i++) {
+                TreeNode* temp = q.front();
+                q.pop();
+                if (temp -> left != NULL) q.push(temp -> left);
+                if (temp -> right != NULL) q.push(temp -> right);
+            }
         }
         
-        int leftHeight = findHeight(root->left);
-        int rightHeight = findHeight(root->right);
-        
-        return 1 + max(leftHeight, rightHeight);
+        return depth;
     }
+    
+    
     int diameterOfBinaryTree(TreeNode* root) {
         if(root == NULL){
             return 0;
