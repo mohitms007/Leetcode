@@ -1,11 +1,20 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        stack<int> S;
-        for(int i = 0; i < nums.size(); i++){
-            if(S.empty() || nums[i] == S.top()) S.push(nums[i]);
-            else if(nums[i] != S.top()) S.pop();
+        int count = 1;
+        int ele = nums[0];
+        
+        for(int i=1;i<nums.size();i++){
+            if(nums[i] != ele) {
+                count--;
+                if(count == 0) {
+                    count = 1;
+                    ele = nums[i];
+                }
+            }else{
+                count ++;
+            }
         }
-        return S.top();
+        return ele;
     }
 };
