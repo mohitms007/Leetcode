@@ -1,8 +1,9 @@
 class Solution {
 public:
     
-    int findPaths(int m, int n, int i, int j) {
 
+    int uniquePaths(int m, int n) {
+      
         vector<vector<int>> ans(m, vector<int> (n));
         for(int i=m-1;i>= 0;i--){
             for(int j=n-1;j >= 0;j--){
@@ -16,11 +17,5 @@ public:
       
         
         return ans[0][0];
-    }
-    
-    int uniquePaths(int m, int n) {
-        int i = 0;
-        int j = 0;
-        return findPaths(m, n, i , j);
     }
 };
